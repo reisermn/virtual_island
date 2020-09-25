@@ -1,0 +1,40 @@
+
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <h1 class="mt-5">Season {{ game_selected.name }}</h1>
+        <br>
+        <h3>Survivor roster</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Suvivor</th>
+                    <th scope="col">Tribe</th>
+                    <th scope="col">Torch</th>
+                    <th scope="col">Elimination Round</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in player_list %}
+                    {# Turn the row red if player is eliminated #}
+                    {% if not player.fire %}
+                    <tr class="bg-danger text-white">
+                        <td>{{ player.username }}</td>
+                        <td>{{ player.tribe_name }}</td>
+                        <td>{{ player.fire }}</td>
+                        <td>none</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td>{{ player.username }}</td>
+                        <td>{{ player.tribe_name }}</td>
+                        <td>{{ player.fire }}</td>
+                        <td>none</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
